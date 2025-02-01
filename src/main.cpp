@@ -8,6 +8,7 @@
 #include <vector>
 
 int main() {
+    SoundEffects sound_effects;
     auto window = sf::RenderWindow(sf::VideoMode({480, 800u}), "Fappy Bird");
     window.setFramerateLimit(144);
 
@@ -22,7 +23,6 @@ int main() {
 
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
-
             float dt = clock.restart().asSeconds();
 
             if (event->is<sf::Event::Closed>()) {
@@ -30,6 +30,7 @@ int main() {
             }
 
             fappyBird.update(dt);
+            sound_effects.jump();
         };
 
         window.clear();
