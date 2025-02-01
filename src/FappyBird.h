@@ -15,6 +15,13 @@ public:
         sprite.setPosition({x, y});
     }
 
+    void update(float dt) {
+        // Apply gravity
+        velocity.y += gravity * dt;
+        // Update position
+        sprite.move(velocity * dt);
+    }
+
     void draw(sf::RenderWindow& window) {
         window.draw(sprite);
     }
@@ -22,6 +29,8 @@ public:
 private:
     sf::Texture texture;
     sf::Sprite sprite;
+    sf::Vector2f velocity;
+    static constexpr float gravity = 980.f; // Gravity constant in pixels/second^2
 };
 
 #endif // FAPPYBIRD_H

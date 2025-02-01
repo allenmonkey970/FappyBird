@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include "icon.h"
 #include "background.h"
 #include "FappyBird.h"
 #include "Pipe.h"
+#include <vector>
 
 int main() {
     auto window = sf::RenderWindow(sf::VideoMode({480, 800u}), "Fappy Bird");
@@ -15,12 +17,19 @@ int main() {
     FappyBird fappyBird("src/assets/FappyBird.png", 20, 30);
     Pipe pipe("src/assets/pipe-green.png", 200, 300);
 
+    sf::Clock clock;
+
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
+
+            float dt = clock.restart().asSeconds();
+
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
-        }
+
+            fappyBird.update(dt);
+        };
 
         window.clear();
         icon.draw(window);
