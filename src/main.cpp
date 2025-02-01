@@ -3,13 +3,13 @@
 
 class FappyBird {
 public:
-    FappyBird(const std::string& textureFile) : sprite(texture) {
+    FappyBird(const std::string& textureFile, float x, float y) : sprite(texture) {
         if (!texture.loadFromFile(textureFile)) {
             std::cerr << "Failed loading Fappy texture" << std::endl;
         }
         sprite.setTextureRect(sf::IntRect({0, 0}, {34, 24}));
         sprite.setScale({2.2, 2.2});
-        sprite.setPosition({50, 50});
+        sprite.setPosition({x, y});
     }
 
     void draw(sf::RenderWindow& window) {
@@ -28,7 +28,7 @@ public:
             std::cerr << "Failed loading pipe texture" << std::endl;
         }
         sprite.setTextureRect(sf::IntRect({0, 0}, {52, 320}));
-        sprite.setPosition({100, 200});
+        sprite.setPosition({x, y});
     }
 
     void draw(sf::RenderWindow& window) {
@@ -44,7 +44,7 @@ int main() {
     auto window = sf::RenderWindow(sf::VideoMode({480, 800u}), "Fappy Bird");
     window.setFramerateLimit(144);
 
-    FappyBird fappyBird("src/assets/FappyBird.png");
+    FappyBird fappyBird("src/assets/FappyBird.png", 20, 30);
     Pipe pipe("src/assets/pipe-green.png", 200, 300);
 
     while (window.isOpen()) {
