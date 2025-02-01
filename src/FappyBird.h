@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
+#include "soundEffects.h"
 class FappyBird {
 public:
     FappyBird(const std::string& textureFile, float x, float y) : sprite(texture) {

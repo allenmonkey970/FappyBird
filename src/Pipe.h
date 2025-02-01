@@ -1,6 +1,6 @@
 #ifndef PIPE_H
 #define PIPE_H
-
+#include "soundEffects.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 

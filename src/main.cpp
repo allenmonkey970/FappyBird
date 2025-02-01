@@ -4,6 +4,7 @@
 #include "background.h"
 #include "FappyBird.h"
 #include "Pipe.h"
+#include "soundEffects.h"
 #include <vector>
 
 int main() {
