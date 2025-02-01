@@ -13,14 +13,14 @@ int main() {
     window.setFramerateLimit(144);
 
     //basic
-    icon icon("src/assets/icon.png");
-    background background("src/assets/background-night.png");
+    icon icon;
+    background background;
 
     FappyBird fappyBird("src/assets/FappyBird.png", 20, 30);
     Pipe pipe("src/assets/pipe-green.png", 200, 300);
 
     sf::Clock clock;
-
+    sound_effects.playJump();
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
             float dt = clock.restart().asSeconds();
@@ -30,7 +30,7 @@ int main() {
             }
 
             fappyBird.update(dt);
-            sound_effects.jump();
+
         };
 
         window.clear();

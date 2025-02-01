@@ -4,24 +4,34 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+// Class to manage the background of the game
 class background {
 public:
-    background(const std::string& textureFile) : sprite(texture) {
-        if (!texture.loadFromFile(textureFile)) {
-            std::cerr << "Failed loading pipe texture" << std::endl;
+    // Constructor to load the texture and set up the sprite
+    background() {
+        // Load the texture from a file
+        if (!texture.loadFromFile(imageFile)) {
+            std::cerr << "Failed loading background texture" << std::endl;
         }
+        sprite.setTexture(texture); // Set the texture for the sprite after loading it
         sprite.setTextureRect(sf::IntRect({0, 0}, {288, 512}));
+        // Scale the sprite to fit the whole screen
         sprite.setScale({1.7, 1.7});
+        // Enable smoothing for the texture
         texture.setSmooth(true);
     }
 
+    // Draw the sprite on the window
     void draw(sf::RenderWindow& window) {
         window.draw(sprite);
     }
 
 private:
+    std::string imageFile = "src/assets/background-night.png";
+    // Texture to hold the background image
     sf::Texture texture;
-    sf::Sprite sprite;
+    // Sprite to display the texture
+    sf::Sprite sprite = sf::Sprite(texture); // Initialize sprite with texture
 };
 
 #endif // BACKGROUND_H
