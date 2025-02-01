@@ -16,8 +16,8 @@ int main() {
     icon icon;
     background background;
 
-    FappyBird fappyBird("src/assets/FappyBird.png", 20, 30);
-    Pipe pipe("src/assets/pipe-green.png", 200, 300);
+    FappyBird fappyBird(20, 30);
+    Pipe pipe(200, 300);
 
     sf::Clock clock;
     sound_effects.playJump();

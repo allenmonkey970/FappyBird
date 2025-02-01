@@ -6,8 +6,8 @@
 #include "soundEffects.h"
 class FappyBird {
 public:
-    FappyBird(const std::string& textureFile, float x, float y) : sprite(texture) {
-        if (!texture.loadFromFile(textureFile)) {
+    FappyBird(float x, float y){
+        if (!texture.loadFromFile(fileName)) {
             std::cerr << "Failed loading Fappy texture" << std::endl;
         }
         sprite.setTextureRect(sf::IntRect({0, 0}, {34, 24}));
@@ -27,8 +27,9 @@ public:
     }
 
 private:
+    std::string fileName = "src/assets/FappyBird.png";
     sf::Texture texture;
-    sf::Sprite sprite;
+    sf::Sprite sprite = sf::Sprite(texture);
     sf::Vector2f velocity;
     static constexpr float gravity = 980.f; // Gravity constant in pixels/second^2
 };

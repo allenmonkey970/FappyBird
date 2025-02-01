@@ -6,8 +6,8 @@
 
 class Pipe {
 public:
-    Pipe(const std::string& textureFile, float x, float y) : sprite(texture) {
-        if (!texture.loadFromFile(textureFile)) {
+    Pipe(float x, float y){
+        if (!texture.loadFromFile(fileName)) {
             std::cerr << "Failed loading pipe texture" << std::endl;
         }
         sprite.setTextureRect(sf::IntRect({0, 0}, {52, 320}));
@@ -20,8 +20,9 @@ public:
     }
 
 private:
+    std::string fileName = "src/assets/pipe-green.png";
     sf::Texture texture;
-    sf::Sprite sprite;
+    sf::Sprite sprite = sf::Sprite(texture);
 };
 
 #endif // PIPE_H
