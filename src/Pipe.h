@@ -1,28 +1,51 @@
 #ifndef PIPE_H
 #define PIPE_H
-#include "soundEffects.h"
-#include <SFML/Graphics.hpp>
-#include <iostream>
 
+
+#include <SFML/Graphics.hpp>
+
+// pipes used in the game
 class Pipe {
 public:
-    Pipe(float x, float y){
-        if (!texture.loadFromFile(fileName)) {
-            std::cerr << "Failed loading pipe texture" << std::endl;
-        }
+    // Constructor to initialize the pipe with position, texture, and orientation (bottom or top)
+    Pipe(float x, float y, const sf::Texture& texture, bool isBottom)
+        : sprite(texture) {
+        // Initialize the sprite with the given texture and set the texture rectangle
         sprite.setTextureRect(sf::IntRect({0, 0}, {52, 320}));
-        sprite.setPosition({x, y});
-        texture.setSmooth(true);
+        if (isBottom) {
+            // Set the position for the bottom pipe
+            sprite.setPosition({x, y});
+        } else {
+            // Adjust position for the top pipe
+            sprite.setPosition({x, y - 30});
+            // Rotate the top pipe by 180 degrees
+            sprite.setRotation(sf::degrees(180));
+        }
     }
 
-    void draw(sf::RenderWindow& window) {
+    // Update the pipe's position based on the delta time (dt)
+    void update(float dt) {
+        // Move the pipe to the left at a constant speed
+        sprite.move({-100.f * dt, 0.f});
+    }
+
+    // Draw the pipe on the window
+    void draw(sf::RenderWindow& window) const {
         window.draw(sprite);
     }
 
+    // Get the current x-coordinate of the pipe
+    float getX() const {
+        return sprite.getPosition().x;
+    }
+
+    // Get the sprite of the pipe
+    const sf::Sprite& getSprite() const {
+        return sprite;
+    }
+
 private:
-    std::string fileName = "src/assets/pipe-green.png";
-    sf::Texture texture;
-    sf::Sprite sprite = sf::Sprite(texture);
+    sf::Sprite sprite;  // Sprite representing the pipe
 };
 
 #endif // PIPE_H

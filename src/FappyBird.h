@@ -44,6 +44,11 @@ public:
         sprite.move(velocity * dt);
     }
 
+    const sf::Sprite& getSprite() const {
+        return sprite;
+    }
+
+
     void draw(sf::RenderWindow &window) {
         window.draw(sprite);
     }
