@@ -14,7 +14,7 @@ int main() {
 
     //basic
     icon icon;
-    background background;
+    backGround backGround;
 
     FappyBird fappyBird(20, 30);
     Pipe pipe(200, 300);
@@ -23,19 +23,18 @@ int main() {
     sound_effects.playJump();
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
-            float dt = clock.restart().asSeconds();
 
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
-
+            float dt = clock.restart().asSeconds();
             fappyBird.update(dt);
 
         };
 
         window.clear();
         icon.draw(window);
-        background.draw(window);
+        backGround.draw(window);
         fappyBird.draw(window);
         pipe.draw(window);
         window.display();

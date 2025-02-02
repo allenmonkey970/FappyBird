@@ -5,10 +5,10 @@
 #include <iostream>
 
 // Class to manage the background of the game
-class background {
+class backGround {
 public:
     // Constructor to load the texture and set up the sprite
-    background() {
+    backGround() {
         // Load the texture from a file
         if (!texture.loadFromFile(imageFile)) {
             std::cerr << "Failed loading background texture" << std::endl;
