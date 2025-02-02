@@ -14,11 +14,11 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(main
         src/main.cpp
-        src/icon.cpp
-        src/background.cpp
-        src/FappyBird.cpp
-        src/Pipe.cpp
-        src/soundEffects.cpp
+        src/icon.h
+        src/background.h
+        src/FappyBird.h
+        src/Pipe.h
+        src/soundEffects.h
 )
 
 target_compile_features(main PRIVATE cxx_std_17)
