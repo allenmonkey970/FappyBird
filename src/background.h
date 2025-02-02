@@ -17,7 +17,6 @@ public:
         sprite.setTextureRect(sf::IntRect({0, 0}, {288, 512}));
         // Scale the sprite to fit the whole screen
         sprite.setScale({1.7, 1.8});
-
         rectangle.setSize(sf::Vector2f(500, 100));
         rectangle.setFillColor(sf::Color(222, 216, 149));
         rectangle.setPosition(sf::Vector2f(0, 715));
