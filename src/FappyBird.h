@@ -46,7 +46,7 @@ private:
 
     }
 
-    std::string fileName = "src/assets/FappyBird.png";
+    std::string fileName = "src/assets/FappyBirdUp.png";
     sf::Texture texture;
     sf::Sprite sprite = sf::Sprite(texture);
     sf::Vector2f velocity;
