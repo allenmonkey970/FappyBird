@@ -1,23 +1,23 @@
 #ifndef PIPE_H
 #define PIPE_H
 
-
 #include <SFML/Graphics.hpp>
 
-// pipes used in the game
+// Pipes used in the game
 class Pipe {
 public:
     // Constructor to initialize the pipe with position, texture, and orientation (bottom or top)
     Pipe(float x, float y, const sf::Texture& texture, bool isBottom)
         : sprite(texture) {
         // Initialize the sprite with the given texture and set the texture rectangle
-        sprite.setTextureRect(sf::IntRect({0, 0}, {52, 320}));
+        sf::FloatRect floatRect(sf::Vector2f(0.f, 0.f), sf::Vector2f(52.f, 320.f));
+        sprite.setTextureRect(sf::IntRect(floatRect)); // Convert FloatRect to IntRect
         if (isBottom) {
             // Set the position for the bottom pipe
             sprite.setPosition({x, y});
         } else {
             // Adjust position for the top pipe
-            sprite.setPosition({x, y - 30});
+            sprite.setPosition({x, y - 30.f});
             // Rotate the top pipe by 180 degrees
             sprite.setRotation(sf::degrees(180));
         }
@@ -42,6 +42,11 @@ public:
     // Get the sprite of the pipe
     const sf::Sprite& getSprite() const {
         return sprite;
+    }
+
+    // Get the bounding box of the pipe for collision detection
+    sf::FloatRect getBounds() const {
+        return sprite.getGlobalBounds();
     }
 
 private:

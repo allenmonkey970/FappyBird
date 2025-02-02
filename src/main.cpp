@@ -33,6 +33,7 @@ int main() {
     float spawnTimer = 0.f;
     const float spawnInterval = 1.5f; // Time interval between pipe spawns
     const float gapSize = 150.f; // Gap between the top and bottom pipes
+    SoundEffects sound_effects;
 
     sf::Clock clock;
     while (window.isOpen()) {
@@ -55,18 +56,37 @@ int main() {
             spawnTimer = 0.f;
         }
 
-        // Update and draw the pipes
+        // Update the position of each pipe
         for (auto& pipe : pipes) {
             pipe.update(dt);
         }
 
-        // Update and draw the pipes
-        for (auto& pipe : pipes) {
-            pipe.update(dt);
+        // Check for collisions with pipes
+        bool collisionDetected = false;
+        for (const auto& pipe : pipes) {
+            if (fappyBird.getBounds().findIntersection(pipe.getBounds())) {
+                collisionDetected = true;
+                break;
+            }
         }
+
+        // Check for collisions with the ground
+        if (fappyBird.getBounds().findIntersection(backGround.getGroundBounds())) {
+            collisionDetected = true;
+        }
+
+        // Remove pipes that have moved off-screen
         pipes.erase(std::remove_if(pipes.begin(), pipes.end(), [](const Pipe& pipe) {
             return pipe.getX() < -52.f;
         }), pipes.end());
+
+        // If a collision is detected, exit the game loop
+        if (collisionDetected) {
+            std::cerr << "Collision detected! Game over." << std::endl;
+            sound_effects.playDeath(); // plays death sound
+            sf:_sleep(2000); //wait for death sound to play
+            break;
+        }
 
         window.clear();
         icon.draw(window);
@@ -77,4 +97,6 @@ int main() {
         }
         window.display();
     }
+
+    return 0;
 }

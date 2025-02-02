@@ -28,6 +28,11 @@ public:
         window.draw(rectangle);
     }
 
+    // Get the bounding box of the ground rectangle for collision detection
+    sf::FloatRect getGroundBounds() const {
+        return rectangle.getGlobalBounds();
+    }
+
 private:
     std::string imageFile = "src/assets/background-night.png";
     // Texture to hold the background image
