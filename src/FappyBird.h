@@ -7,24 +7,33 @@
 #include <SFML/Window/Mouse.hpp>
 #include "soundEffects.h"
 
-constexpr float GRAVITY = 980.0f;  // Centralized constant for gravity
+constexpr float GRAVITY = 980.0f; // Centralized constant for gravity
 constexpr float FLY_FORCE = 400.0f; // Centralized constant for fly force
 
 class FappyBird {
 public:
     FappyBird(float x, float y) {
-        if (!texture.loadFromFile(fileName)) {
-            std::cerr << "Failed loading Fappy texture" << std::endl;
+        if (!textureUp.loadFromFile(fileNameUp)) {
+            std::cerr << "Failed loading Fappy texture (Up)" << std::endl;
             exit(EXIT_FAILURE); // Exit if texture loading fails
         }
+        if (!textureDown.loadFromFile(fileNameDown)) {
+            std::cerr << "Failed loading Fappy texture (Down)" << std::endl;
+            exit(EXIT_FAILURE); // Exit if texture loading fails
+        }
+        sprite.setTexture(textureUp);
         sprite.setTextureRect(sf::IntRect({0, 0}, {34, 24}));
         sprite.setScale({2.2, 2.2});
         sprite.setPosition({x, y});
     }
 
     void handleInput() {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) ||
+            sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+            sprite.setTexture(textureDown); // Change to wing-down texture
             fly();
+        } else {
+            sprite.setTexture(textureUp); // Change back to wing-up texture
         }
     }
 
@@ -35,7 +44,7 @@ public:
         sprite.move(velocity * dt);
     }
 
-    void draw(sf::RenderWindow& window) {
+    void draw(sf::RenderWindow &window) {
         window.draw(sprite);
     }
 
@@ -43,12 +52,13 @@ private:
     void fly() {
         sound_effects.playJump();
         velocity.y = -FLY_FORCE;
-
     }
 
-    std::string fileName = "src/assets/FappyBirdUp.png";
-    sf::Texture texture;
-    sf::Sprite sprite = sf::Sprite(texture);
+    std::string fileNameUp = "src/assets/FappyBirdUp.png";
+    std::string fileNameDown = "src/assets/FappyBirdDown.png";
+    sf::Texture textureUp;
+    sf::Texture textureDown;
+    sf::Sprite sprite = sf::Sprite(textureUp);
     sf::Vector2f velocity;
     SoundEffects sound_effects;
 };
