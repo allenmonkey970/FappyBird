@@ -16,14 +16,17 @@ public:
         sprite.setTexture(texture); // Set the texture for the sprite after loading it
         sprite.setTextureRect(sf::IntRect({0, 0}, {288, 512}));
         // Scale the sprite to fit the whole screen
-        sprite.setScale({1.7, 1.7});
-        // Enable smoothing for the texture
-        texture.setSmooth(true);
+        sprite.setScale({1.7, 1.8});
+
+        rectangle.setSize(sf::Vector2f(500, 100));
+        rectangle.setFillColor(sf::Color(222, 216, 149));
+        rectangle.setPosition(sf::Vector2f(0, 715));
     }
 
     // Draw the sprite on the window
     void draw(sf::RenderWindow& window) {
         window.draw(sprite);
+        window.draw(rectangle);
     }
 
 private:
@@ -32,6 +35,7 @@ private:
     sf::Texture texture;
     // Sprite to display the texture
     sf::Sprite sprite = sf::Sprite(texture); // Initialize sprite with texture
+    sf::RectangleShape rectangle;
 };
 
 #endif // BACKGROUND_H
