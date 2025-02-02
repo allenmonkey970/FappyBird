@@ -5,46 +5,41 @@
 #include <string>
 #include <iostream>
 
-// Class to manage sound effects for the game
 class SoundEffects {
 public:
-  // Constructor to load sound files
-  SoundEffects() {
-    if (!jumpBuffer.loadFromFile(jumpSound) ||
-        !pointBuffer.loadFromFile(pointSound) ||
-        !deathBuffer.loadFromFile(deathSound)) {
-      std::cerr << "Failed to load sound files." << std::endl;
-        }
-  }
+    SoundEffects() {
+        if (!jumpBuffer.loadFromFile(jumpSoundPath) ||
+            !pointBuffer.loadFromFile(pointSoundPath) ||
+            !deathBuffer.loadFromFile(deathSoundPath)) {
+            std::cerr << "Failed to load sound files." << std::endl;
+            exit(EXIT_FAILURE); // Exit if sound loading fails
+            }
+        jumpSound.setBuffer(jumpBuffer);
+        pointSound.setBuffer(pointBuffer);
+        deathSound.setBuffer(deathBuffer);
+    }
 
-// function to play sound effects
-  void playJump() { playSound(jumpBuffer); }
-
-  void playPoint() { playSound(pointBuffer); }
-
-  void playDeath() { playSound(deathBuffer); }
+    void playJump() { playSound(jumpSound); }
+    void playPoint() { playSound(pointSound); }
+    void playDeath() { playSound(deathSound); }
 
 private:
-  // Method to play a sound buffer
-  void playSound(const sf::SoundBuffer& buffer) {
-    sf::Sound sound(buffer);
-    sound.setVolume(10.f);  // Set the volume to 10%
-    sound.play();
-    while (sound.getStatus() == sf::Sound::Status::Playing) {
-      // Keep the application alive while the sound is playing
-      sleep(sf::milliseconds(10));
+    void playSound(sf::Sound& sound) {
+        sound.setVolume(10.f);  // Set the volume to 10%
+        sound.play();
     }
-  }
 
-  // Sound buffers for different sound effects
-  sf::SoundBuffer jumpBuffer;
-  sf::SoundBuffer pointBuffer;
-  sf::SoundBuffer deathBuffer;
+    sf::SoundBuffer jumpBuffer;
+    sf::SoundBuffer pointBuffer;
+    sf::SoundBuffer deathBuffer;
 
-  // File paths for sound effects
-  std::string jumpSound = "src/assets/jump.wav";
-  std::string pointSound = "src/assets/point.wav";
-  std::string deathSound = "src/assets/hit.wav";
+    const std::string jumpSoundPath = "src/assets/jump.wav";
+    const std::string pointSoundPath = "src/assets/point.wav";
+    const std::string deathSoundPath = "src/assets/hit.wav";
+
+    sf::Sound jumpSound{ jumpBuffer }; // Initialized with buffer
+    sf::Sound pointSound{ pointBuffer }; // Initialized with buffer
+    sf::Sound deathSound{ deathBuffer }; // Initialized with buffer
 };
 
 #endif // SOUNDS_H

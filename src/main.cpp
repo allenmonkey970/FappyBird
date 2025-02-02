@@ -8,29 +8,26 @@
 #include <vector>
 
 int main() {
-    SoundEffects sound_effects;
     auto window = sf::RenderWindow(sf::VideoMode({480, 800u}), "Fappy Bird");
     window.setFramerateLimit(144);
 
-    //basic
+    // Basic game elements
     icon icon;
     backGround backGround;
-
     FappyBird fappyBird(20, 30);
     Pipe pipe(200, 300);
 
     sf::Clock clock;
-    sound_effects.playJump();
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
-
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
-            float dt = clock.restart().asSeconds();
-            fappyBird.update(dt);
+        }
 
-        };
+        float dt = clock.restart().asSeconds();
+        fappyBird.handleInput();
+        fappyBird.update(dt);
 
         window.clear();
         icon.draw(window);
