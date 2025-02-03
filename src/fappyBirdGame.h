@@ -54,7 +54,7 @@ private:
     std::vector<Pipe> pipes; // Vector of pipes
     float spawnTimer; // Timer for pipe spawning
     const float spawnInterval = 1.5f; // Time interval between pipe spawns
-    const float gapSize = 170.f; // Gap between the top and bottom pipes
+    const float gapSize = 180.f; // Gap between the top and bottom pipes
     SoundEffects sound_effects; // Sound effects
     sf::Clock clock;
 
