@@ -74,9 +74,9 @@ fappybird/
 │   ├── Background.h
 │   └── main.cpp
 ├── CMakeLists.txt
+├── LICENSE
 └── README.md
 ```
-
 ## Building the Project
 
 The project uses CMake to manage the build process. Below is the provided `CMakeLists.txt` file:
