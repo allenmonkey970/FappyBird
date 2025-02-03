@@ -16,7 +16,7 @@ Welcome to the Fappy Bird game! This project is my own clone of the popular Flap
 
 ## Introduction
 
-Fappy Bird is a simple yet addictive game where you control a bird to navigate through obstacles (pipes) without crashing. This project is designed for learning purposes and showcases the use of SFML for game development.
+Fappy Bird is a simple yet addictive game where you control a bird to navigate through obstacles (pipes) without crashing.
 
 ## Features
 
