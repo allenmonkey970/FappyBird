@@ -19,7 +19,13 @@ add_executable(main
         src/FappyBird.h
         src/Pipe.h
         src/soundEffects.h
+        src/fappyBirdGame.h
 )
 
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics SFML::Window SFML::System SFML::Audio)
+
+# Set the working directory to a relative path
+set_target_properties(main PROPERTIES
+        VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/relative/path/to/working/directory"
+)
