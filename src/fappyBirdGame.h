@@ -53,7 +53,7 @@ private:
     FappyBird fappyBird{20.f, 30.f}; // Bird object
     std::vector<Pipe> pipes; // Vector of pipes
     float spawnTimer; // Timer for pipe spawning
-    const float spawnInterval = 1.5f; // Time interval between pipe spawns
+    const float spawnInterval = 1.7f; // Time interval between pipe spawns
     const float gapSize = 180.f; // Gap between the top and bottom pipes
     SoundEffects sound_effects; // Sound effects
     sf::Clock clock;
