@@ -148,7 +148,6 @@ This will compile the game and place the executable in the `bin` directory.
 ## Acknowledgements
 
 - This project is inspired by the original Flappy Bird game.
-- Thanks to the SFML library for making game development in C++ a breeze.
 - Special thanks to Samuelcust for his [Flappy Bird Assets](https://github.com/samuelcust/flappy-bird-assets)
 
 ## Future Plans
