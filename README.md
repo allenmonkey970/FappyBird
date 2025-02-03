@@ -122,7 +122,7 @@ set_target_properties(main PROPERTIES
 - **Executable and Source Files:** The `add_executable` command creates an executable named `main` and includes all necessary source and header files for the project.
 - **Compiler Features:** The project is set to use the C++17 standard.
 - **Linking Libraries:** The `target_link_libraries` command links the executable with the SFML libraries for graphics, window management, system functionality, and audio.
-- - **Set Target Properties:** The `set_target_properties` sets the working directory to a relative path.
+- **Set Target Properties:** The `set_target_properties` sets the working directory to a relative path.
 
 ### Building Instructions
 
