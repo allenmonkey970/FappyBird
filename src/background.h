@@ -23,7 +23,7 @@ public:
     }
 
     // Draw the sprite on the window
-    void draw(sf::RenderWindow& window) {
+    void draw(sf::RenderWindow& window) const {
         window.draw(sprite);
         window.draw(rectangle);
     }

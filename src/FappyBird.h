@@ -54,7 +54,7 @@ public:
         return sprite; // Return the sprite
     }
 
-    void draw(sf::RenderWindow &window) {
+    void draw(sf::RenderWindow &window) const {
         window.draw(sprite); // Draw the sprite on the window
     }
 

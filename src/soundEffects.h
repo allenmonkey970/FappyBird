@@ -24,7 +24,7 @@ public:
     void playDeath() { playSound(deathSound); }
 
 private:
-    void playSound(sf::Sound& sound) {
+    void static playSound(sf::Sound& sound) {
         sound.setVolume(10.f);  // Set the volume to 10%
         sound.play();
     }
