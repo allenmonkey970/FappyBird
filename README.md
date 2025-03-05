@@ -155,12 +155,6 @@ This will compile the game and place the executable in the `bin` directory.
 - This project is inspired by the original Flappy Bird game.
 - Special thanks to Samuelcust for his [Flappy Bird Assets](https://github.com/samuelcust/flappy-bird-assets)
 
-## Future Plans
-
-- **End Screen:** Implement an end screen to display the final score and offer a restart option.
-- **Start Screen:** Add a start screen with options to start the game, view instructions, and access settings.
-- **Additional Features:** Consider finishing the sound effects, animations, and difficulty levels.
-
 ## Contributing
 
 Contributions are welcome! If you have any ideas or improvements, feel free to open an issue or submit a pull request.
